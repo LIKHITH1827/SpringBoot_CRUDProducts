@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.api.model.Product;
 import com.example.api.service.ProductService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
@@ -27,11 +30,11 @@ public class ProductController {
 	ProductService productService;
 	
 	
-	@GetMapping("/")
-	public String Home() {
-		logger.info("Home page");
-		return "This is Home";
-	}
+//	@GetMapping("/")
+//	public String Home() {
+//		logger.info("Home page");
+//		return "This is Home";
+//	}
 
 	@GetMapping("/products")
 	public List<Product> getProducts() {
@@ -56,6 +59,11 @@ public class ProductController {
 	public void addProduct(@RequestBody Product product) {
 		logger.info("Received product: {}", product);
         productService.addProduct(product);
+	}
+	
+	@GetMapping("/csrf-token")
+	public  CsrfToken getCsrfToken(HttpServletRequest request) {
+		return (CsrfToken) request.getAttribute("_csrf");
 	}
 	
 	@PutMapping("/products")

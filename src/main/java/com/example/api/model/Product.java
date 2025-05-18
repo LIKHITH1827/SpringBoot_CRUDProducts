@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 public class Product {
 	
     @Id
-	private int prodId;
-	private String prodName;
+	private int prodid;
+	private String prodname;
 	private int price;
 	
 	public Product() {
@@ -38,19 +38,19 @@ public class Product {
 //	}
 
 	public int getProdId() {
-		return prodId;
+		return prodid;
 	}
 
 	public void setProdId(int prodId) {
-		this.prodId = prodId;
+		this.prodid = prodId;
 	}
 
-	public String getProdName() {
-		return prodName;
+	public String getProdname() {
+		return prodname;
 	}
 
 	public void setProdName(String prodName) {
-		this.prodName = prodName;
+		this.prodname = prodName;
 	}
 
 	public int getPrice() {
@@ -63,7 +63,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [prodId=" + prodId + ", prodName=" + prodName + ", price=" + price + "]";
+		return "Product [prodId=" + prodid + ", prodName=" + prodname + ", price=" + price + "]";
 	}
 	
 }
